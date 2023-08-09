@@ -71,7 +71,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgb(228, 248, 232, 0.8);
+  background-color: rgba(253, 253, 253, 0.8);
 }
 .add-user {
   margin: 100px auto;
