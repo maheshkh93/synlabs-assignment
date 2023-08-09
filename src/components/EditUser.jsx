@@ -13,13 +13,17 @@ export default function EditUser({ item, updateEdit, close }) {
       email: email,
       phone: phone,
     };
-    await customPut(`/users/${item.id}`, obj).then((res) => {
-      if (res) {
-        close();
-        const object = { ...res, ...obj };
-        updateEdit(object);
-      }
-    });
+    try {
+      await customPut(`/users/${item.id}`, obj).then((res) => {
+        if (res) {
+          close();
+          const object = { ...res, ...obj };
+          updateEdit(object);
+        }
+      });
+    } catch (err) {
+      alert(err);
+    }
   };
   return (
     <div className="main">

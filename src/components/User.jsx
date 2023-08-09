@@ -8,15 +8,18 @@ export default function User({ item, updateDelete, openEdit }) {
 
   //function to delete user
   const deleteUser = async (id) => {
-    await customDelete(`/users/${id}`).then((res) => {
-      if (res) {
-        updateDelete(id);
-      }
-    });
+    try {
+      await customDelete(`/users/${id}`).then((res) => {
+        if (res) {
+          updateDelete(id);
+        }
+      });
+    } catch (err) {
+      alert(err);
+    }
   };
   return (
     <tr
-      key={item.id}
       className="details"
       onMouseEnter={() => setEdit(true)}
       onMouseLeave={() => setEdit(false)}

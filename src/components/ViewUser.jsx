@@ -9,9 +9,15 @@ export default function ViewUser() {
 
   //Function to fetch single User
   useEffect(() => {
-    customGet(`/users/${id}`).then((res) => {
-      res ? setData(res) : null;
-    });
+    (async () => {
+      try {
+        customGet(`/users/${id}`).then((res) => {
+          res ? setData(res) : null;
+        });
+      } catch (err) {
+        alert(err);
+      }
+    })();
   }, []);
 
   return (

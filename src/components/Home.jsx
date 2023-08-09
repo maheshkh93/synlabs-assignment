@@ -13,9 +13,14 @@ export default function Home() {
 
   // Function to load data initially
   useEffect(() => {
-    customGet("/users").then((res) => {
-      res ? setData(res) : null;
-    });
+    (async () => {
+      try {
+        const res = await customGet("/users");
+        setData(res);
+      } catch (err) {
+        alert(err);
+      }
+    })();
   }, []);
 
   // Function to Update new added user

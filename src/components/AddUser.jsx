@@ -13,13 +13,14 @@ export default function AddUser({ close, updateUser }) {
       email: email,
       phone: phone,
     };
-    await customPost("/users", obj).then((res) => {
-      if (res) {
-        close();
-        const object = { ...res, ...obj };
-        updateUser(object);
-      }
-    });
+    try {
+      const users = await customPost("/users", obj);
+      close();
+      const object = { ...users, ...obj };
+      updateUser(object);
+    } catch (err) {
+      alert(err);
+    }
   };
   return (
     <div className="main">
